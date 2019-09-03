@@ -1,13 +1,15 @@
 from django.db import models
+from django.shortcuts import render
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
-from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from streams import blocks
 
 
-class BlogListingPage(Page):
+class BlogListingPage(RoutablePageMixin, Page):
     """Listing page lists all the Blog detail pages"""
 
     template = 'blog/blog_listing_page.html'
@@ -25,7 +27,14 @@ class BlogListingPage(Page):
         """Adding custom stuff to our context"""
         context = super().get_context(request, *args, **kwargs)
         context['posts'] = BlogDetailPage.objects.live().public()
+        context['a_special_link'] = self.reverse_subpage('latest_posts')
         return context
+
+    @route(r'^latest/$')
+    def latest_blog_posts(self, request, *args, **kwargs):
+        context = self.get_context(request, *args, **kwargs)
+        context['posts'] = context['posts'][:2]
+        return render(request, 'blog/latest_posts.html', context)
 
 
 class BlogDetailPage(Page):
