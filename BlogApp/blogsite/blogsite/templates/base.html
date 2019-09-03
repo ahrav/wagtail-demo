@@ -6,7 +6,7 @@
     <meta charset="utf-8"/>
     <title>
         {% block title %}
-        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{%
+        {% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}
         {% endif %}
         {% endblock %}
         {% block title_suffix %}
@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     {# Global stylesheets #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.css">
     <link rel="stylesheet"
           href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
     <link rel="stylesheet" type="text/css"
@@ -67,6 +68,28 @@
 
 {% block content %}
 {% endblock %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                {% if settings.site_settings.SocialMediaSettings.facebook %}
+                    <a href="{{ settings.site_settings.SocialMediaSettings.facebook }}">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                {% endif %}
+                {% if settings.site_settings.SocialMediaSettings.twitter %}
+                    <a href="{{ settings.site_settings.SocialMediaSettings.twitter }}">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                {% endif %}
+                {% if settings.site_settings.SocialMediaSettings.youtube %}
+                    <a href="{{ settings.site_settings.SocialMediaSettings.youtube }}">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 
 {# Global javascript #}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
