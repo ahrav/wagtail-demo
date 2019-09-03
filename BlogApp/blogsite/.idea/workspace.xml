@@ -2,32 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7b6e2511-5402-414a-99d4-ab1997c630e7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blogsite/templates/flex/flex_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blogsite/templates/streams/title_and_text_block.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/migrations/0002_flexpage_content.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/flex/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/blocks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/streams/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blogsite/templates/streams/richtext_block.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogsite/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogsite/settings/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogsite/settings/dev.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogsite/settings/dev.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogsite/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/blogsite/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blogsite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/blogsite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pipfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Pipfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/flex/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/flex/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/streams/blocks.py" beforeDir="false" afterPath="$PROJECT_DIR$/streams/blocks.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +26,7 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

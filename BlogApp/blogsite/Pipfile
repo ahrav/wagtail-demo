@@ -4,6 +4,9 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pep8 = "*"
+flake8 = "*"
+yapf = "*"
 
 [packages]
 wagtail = "<2.7,>=2.6"
