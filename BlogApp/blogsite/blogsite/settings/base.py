@@ -22,6 +22,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Application definition
 
 INSTALLED_APPS = [
+    'menus',
     'blog',
     'subscribers',
     'site_settings',
