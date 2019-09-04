@@ -5,6 +5,8 @@ from wagtail.admin.edit_handlers import (FieldPanel, FieldRowPanel,
 from wagtail.contrib.forms.models import AbstractEmailForm, AbstractFormField
 from wagtail.core.fields import RichTextField
 
+from wagtailcaptcha.models import WagtailCaptchaEmailForm
+
 
 class FormField(AbstractFormField):
 
@@ -13,7 +15,7 @@ class FormField(AbstractFormField):
                        related_name='form_fields')
 
 
-class ContactPage(AbstractEmailForm):
+class ContactPage(WagtailCaptchaEmailForm):
 
     template = 'contact/contact_page.html'
 

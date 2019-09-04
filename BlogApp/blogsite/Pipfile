@@ -14,6 +14,8 @@ Django = "<2.3,>=2.2"
 yapf = "*"
 django-extensions = "*"
 ipython = "*"
+wagtail-django-recaptcha = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"

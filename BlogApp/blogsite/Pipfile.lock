@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cb7ed9c1596e81176f5bad565c4cc1b27d0a39782950d71e012d5c652b1a075c"
+            "sha256": "74aeb76c333b70a6edadfa440c779ca13e80d1fedf1d697af94c5212b6b0cb0e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -83,6 +83,13 @@
             ],
             "version": "==4.4"
         },
+        "django-recaptcha": {
+            "hashes": [
+                "sha256:3b19b9d972ca802b683eed5fd51ed84b0798f2a52f8d057a912eb7d99cff3779",
+                "sha256:b6ce959cd7c0af7501698fab5f52ca1bcb6d9402cb3b8b42a4c4cb13d89cfbfa"
+            ],
+            "version": "==2.0.5"
+        },
         "django-taggit": {
             "hashes": [
                 "sha256:710b4d15ec1996550cc68a0abbc41903ca7d832540e52b1336e6858737e410d8",
@@ -98,10 +105,10 @@
         },
         "djangorestframework": {
             "hashes": [
-                "sha256:42979bd5441bb4d8fd69d0f385024a114c3cae7df0f110600b718751250f6929",
-                "sha256:aedb48010ebfab9651aaab1df5fd3b4848eb4182afc909852a2110c24f89a359"
+                "sha256:5488aed8f8df5ec1d70f04b2114abc52ae6729748a176c453313834a9ee179c8",
+                "sha256:dc81cbf9775c6898a580f6f1f387c4777d12bd87abf0f5406018d32ccae71090"
             ],
-            "version": "==3.10.2"
+            "version": "==3.10.3"
         },
         "draftjs-exporter": {
             "hashes": [
@@ -220,6 +227,14 @@
             ],
             "version": "==2.4.2"
         },
+        "python-dotenv": {
+            "hashes": [
+                "sha256:debd928b49dbc2bf68040566f55cdb3252458036464806f4094487244e2a4093",
+                "sha256:f157d71d5fec9d4bd5f51c82746b6344dffa680ee85217c123f4a0c8117c4544"
+            ],
+            "index": "pypi",
+            "version": "==0.10.3"
+        },
         "pytz": {
             "hashes": [
                 "sha256:26c0b32e437e54a18161324a2fca3c4b9846b74a8dccddd843113109e1116b32",
@@ -276,6 +291,13 @@
             ],
             "index": "pypi",
             "version": "==2.6.1"
+        },
+        "wagtail-django-recaptcha": {
+            "hashes": [
+                "sha256:fc177e75da966e9db1dfd9a566c40d30567518d9280b5db4fec4d50a8c853154"
+            ],
+            "index": "pypi",
+            "version": "==1.0"
         },
         "wcwidth": {
             "hashes": [
