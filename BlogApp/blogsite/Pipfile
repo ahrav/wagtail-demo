@@ -12,6 +12,8 @@ yapf = "*"
 wagtail = "<2.7,>=2.6"
 Django = "<2.3,>=2.2"
 yapf = "*"
+django-extensions = "*"
+ipython = "*"
 
 [requires]
 python_version = "3.7"

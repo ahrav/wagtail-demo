@@ -4,6 +4,7 @@
 
 {% block content %}
 
+{% if categories %}
 <h2>Categories</h2>
 <ul>
   {% for cat in categories %}
@@ -13,6 +14,7 @@
   </li>
   {% endfor %}
 </ul>
+{% endif %}
 
 <div class="container">
   {% for post in posts %}
