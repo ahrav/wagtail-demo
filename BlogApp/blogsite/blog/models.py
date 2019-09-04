@@ -116,7 +116,6 @@ class BlogListingPage(RoutablePageMixin, Page):
         """Adding custom stuff to our context"""
         context = super().get_context(request, *args, **kwargs)
         category = request.GET.get('category', '')
-        print(category)
         if category:
             context['posts'] = BlogDetailPage.objects.live().public().filter(
                 categories__slug=category)
