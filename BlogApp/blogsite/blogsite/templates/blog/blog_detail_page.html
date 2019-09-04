@@ -5,25 +5,39 @@
 {% block content %}
 {% image self.blog_image fill-1200x300 as banner %}
 <img src="{{ banner.url }}" style="width: 100%; height: auto;" alt="{{ banner.alt }}">
-<div class="container">
+<div class="container mt-5 mb-5">
   <div class="text-center">
     <h1>{{ self.custom_title }}</h1>
+    <div class="d-flex justify-content-center">
+      {% for iter in self.blog_authors.all %}
+      {% image iter.author.image fill-50x50 as img %}
+      <div>
+        <div>
+          <img src="{{ img.url }}" class="rounded-circle" alt="{{ iter.author.name }}">
+        </div>
+        {% if iter.author.website %}
+        <a href="{{ iter.author.website }}">
+          {{ iter.author.name }}
+        </a>
+        {% else %}
+        {{ iter.author.name }}
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
   </div>
 
-  <ul>
-    {% for iter in self.blog_authors.all %}
-    {% image iter.author.image fill-50x50 as img %}
-    <li>
-      <img src="{{ img.url }}" alt="{{ iter.author.name }}">
-      {{ iter.author.name }}
-      {% if iter.author.website %}
-      <a href="{{ iter.author.website }}">(website)</a>
-      {% endif %}
-    </li>
-    {% endfor %}
-  </ul>
-
 </div>
+
+<h2>Categories</h2>
+<ul>
+  {% for cat in self.categories.all %}
+  <li>
+    <a href="{{ self.get_parent.url }}?category={{ cat.slug }}">{{ cat.name }}</a>
+    {{ cat.name }}
+  </li>
+  {% endfor %}
+</ul>
 
 <div class="container">
   <div class="row">

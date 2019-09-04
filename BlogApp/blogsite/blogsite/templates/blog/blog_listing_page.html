@@ -4,6 +4,16 @@
 
 {% block content %}
 
+<h2>Categories</h2>
+<ul>
+  {% for cat in categories %}
+  <li>
+    <a href="?category={{ cat.slug }}">{{ cat.name }}</a>
+    {{ cat.name }}
+  </li>
+  {% endfor %}
+</ul>
+
 <div class="container">
   {% for post in posts %}
   <div class="row">
