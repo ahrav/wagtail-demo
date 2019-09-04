@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'flex',
     'home',
     'search',
+    'contact',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.contrib.settings',
