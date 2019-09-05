@@ -10,6 +10,14 @@ class FlexPage(Page):
     """ Flexible page class """
 
     template = "flex/flex_page.html"
+    subtpage_types = [
+        'flex.FlexPage',
+        'contact.ContactPage',
+    ]
+    parent_page_types = [
+        'flex.FlexPage',
+        'home.HomePage',
+    ]
 
     content = StreamField(
         [

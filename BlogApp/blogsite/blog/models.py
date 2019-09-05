@@ -11,23 +11,23 @@ from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Orderable, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.images.api.fields import ImageRenditionField
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
 from wagtail.api import APIField
 
 from streams import blocks
 
-from rest_framework.fields import Field
+# from rest_framework.fields import Field
 
-
-class ImageSerializedField(Field):
-    def to_representation(self, image):
-        return {
-            'url': image.file.url,
-            'title': image.title,
-            'width': image.width,
-            'height': image.height,
-        }
+# class ImageSerializedField(Field):
+#     def to_representation(self, image):
+#         return {
+#             'url': image.file.url,
+#             'title': image.title,
+#             'width': image.width,
+#             'height': image.height,
+#         }
 
 
 class BlogAuthorsOrderable(Orderable):
@@ -45,7 +45,10 @@ class BlogAuthorsOrderable(Orderable):
 
     api_fields = [
         APIField('author_name'),
-        APIField('author_image', serializer=ImageSerializedField())
+        # APIField('author_image', serializer=ImageSerializedField()),
+        APIField('image',
+                 serializer=ImageRenditionField('fill-250x250',
+                                                source='author_image'))
     ]
 
     @property
@@ -133,6 +136,11 @@ class BlogListingPage(RoutablePageMixin, Page):
     """Listing page lists all the Blog detail pages"""
 
     template = 'blog/blog_listing_page.html'
+    max_count = 1
+    subpage_types = [
+        'blog.ArticleBlogPage',
+        'blog.VideoBlogPage',
+    ]
 
     custom_title = models.CharField(max_length=100,
                                     blank=False,
@@ -191,6 +199,9 @@ class BlogListingPage(RoutablePageMixin, Page):
 
 class BlogDetailPage(Page):
     """Parental bllog detail page"""
+
+    subpage_types = []
+    parent_page_types = ['blog.BlogListingPage',]
 
     custom_title = models.CharField(max_length=100,
                                     blank=False,
