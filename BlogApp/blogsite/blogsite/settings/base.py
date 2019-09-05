@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'wagtail.search',
     'wagtail.admin',
     'wagtail.core',
+    'wagtail.api.v2',
     'modelcluster',
     'taggit',
     'django.contrib.admin',
@@ -59,6 +60,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'captcha',
     'wagtailcaptcha',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
