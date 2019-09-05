@@ -13,6 +13,7 @@ from wagtail.core.models import Orderable, Page
 from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from wagtail.snippets.models import register_snippet
+from wagtail.api import APIField
 
 from streams import blocks
 
@@ -29,6 +30,17 @@ class BlogAuthorsOrderable(Orderable):
     panels = [
         SnippetChooserPanel('author'),
     ]
+
+    api_fields = [
+        APIField('author'),
+        APIField('author_name'),
+    ]
+
+    @property
+    def author_name(self):
+        """Returns author's name"""
+
+        return self.author.name
 
 
 class BlogAuthor(models.Model):
@@ -197,6 +209,11 @@ class BlogDetailPage(Page):
             [FieldPanel('categories', widget=forms.CheckboxSelectMultiple)],
             heading='Categories'),
         StreamFieldPanel('content'),
+    ]
+
+    api_fields = [
+        APIField('blog_authors'),
+        APIField('content'),
     ]
 
     def save(self, *args, **kwargs):
