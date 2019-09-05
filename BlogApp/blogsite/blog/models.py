@@ -17,6 +17,18 @@ from wagtail.api import APIField
 
 from streams import blocks
 
+from rest_framework.fields import Field
+
+
+class ImageSerializedField(Field):
+    def to_representation(self, image):
+        return {
+            'url': image.file.url,
+            'title': image.title,
+            'width': image.width,
+            'height': image.height,
+        }
+
 
 class BlogAuthorsOrderable(Orderable):
     """Allow to select one or more blog authors from snippet"""
@@ -32,8 +44,8 @@ class BlogAuthorsOrderable(Orderable):
     ]
 
     api_fields = [
-        APIField('author'),
         APIField('author_name'),
+        APIField('author_image', serializer=ImageSerializedField())
     ]
 
     @property
@@ -41,6 +53,10 @@ class BlogAuthorsOrderable(Orderable):
         """Returns author's name"""
 
         return self.author.name
+
+    @property
+    def author_image(self):
+        return self.author.image
 
 
 class BlogAuthor(models.Model):
