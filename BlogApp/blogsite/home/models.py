@@ -1,16 +1,15 @@
 from django.db import models
 from django.shortcuts import render
-
 from modelcluster.fields import ParentalKey
-
+from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
+                                         MultiFieldPanel, ObjectList,
+                                         PageChooserPanel, StreamFieldPanel,
+                                         TabbedInterface)
 from wagtail.api import APIField
-from wagtail.admin.edit_handlers import (FieldPanel, PageChooserPanel,
-                                         StreamFieldPanel, InlinePanel,
-                                         MultiFieldPanel)
-from wagtail.core.fields import RichTextField, StreamField
-from wagtail.core.models import Page, Orderable
-from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
+from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.models import Orderable, Page
+from wagtail.images.edit_handlers import ImageChooserPanel
 
 from streams import blocks
 
@@ -44,9 +43,7 @@ class HomePage(RoutablePageMixin, Page):
         'flex.FlexPage',
     ]
     # max_count = 1
-    parent_page_type = [
-        'wagtailcore.Page'
-    ]
+    parent_page_type = ['wagtailcore.Page']
 
     banner_title = models.CharField(max_length=100, blank=False, null=True)
     banner_subtitle = RichTextField(features=['bold', 'italic'])
@@ -80,19 +77,29 @@ class HomePage(RoutablePageMixin, Page):
 
     content_panels = Page.content_panels + [
         MultiFieldPanel([
-            FieldPanel('banner_title'),
-            FieldPanel('banner_subtitle'),
-            ImageChooserPanel('banner_image'),
-            PageChooserPanel('banner_cta'),
-        ],
-                        heading='Banner Options'),
-        MultiFieldPanel([
             InlinePanel('carousel_images', max_num=5, min_num=1,
                         label='Image'),
         ],
                         heading='Carousel Images'),
         StreamFieldPanel('content'),
     ]
+
+    banner_panels = [
+        MultiFieldPanel([
+            FieldPanel('banner_title'),
+            FieldPanel('banner_subtitle'),
+            ImageChooserPanel('banner_image'),
+            PageChooserPanel('banner_cta'),
+        ],
+                        heading='Banner Options'),
+    ]
+
+    edit_handler = TabbedInterface([
+        ObjectList(content_panels, heading='Content'),
+        ObjectList(banner_panels, heading='Banner Settings'),
+        ObjectList(Page.promote_panels, heading='Promote'),
+        ObjectList(Page.settings_panels, heading='Settings'),
+    ])
 
     class Meta:
         verbose_name = 'Home Page'
