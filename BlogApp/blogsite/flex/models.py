@@ -34,6 +34,7 @@ class FlexPage(Page):
                  help_text='Oh wow help text',
                  min_length=10,
                  max_length=55,
+                 template='streams/char_block.html',
              )),
         ],
         null=True,
