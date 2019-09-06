@@ -1,5 +1,6 @@
 from django.db import models
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
+from wagtail.core import blocks as streamfield_blocks
 from wagtail.core.fields import StreamField
 from wagtail.core.models import Page
 
@@ -10,7 +11,7 @@ class FlexPage(Page):
     """ Flexible page class """
 
     template = "flex/flex_page.html"
-    subtpage_types = [
+    subpage_types = [
         'flex.FlexPage',
         'contact.ContactPage',
     ]
@@ -27,6 +28,13 @@ class FlexPage(Page):
             ('cards', blocks.CardBlock()),
             ('cta', blocks.CTABlock()),
             ('button', blocks.ButtonBlock()),
+            ('char_block',
+             streamfield_blocks.CharBlock(
+                 required=True,
+                 help_text='Oh wow help text',
+                 min_length=10,
+                 max_length=55,
+             )),
         ],
         null=True,
         blank=True,
