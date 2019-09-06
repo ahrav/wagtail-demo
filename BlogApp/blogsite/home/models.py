@@ -110,3 +110,9 @@ class HomePage(RoutablePageMixin, Page):
         context = self.get_context(request, *args, **kwargs)
         context['special'] = 'hello world'
         return render(request, 'home/subscribe.html', context)
+
+
+HomePage._meta.get_field('title').verbose_name = 'Verbbbyy'
+HomePage._meta.get_field('title').help_text = 'Custom help text'
+HomePage._meta.get_field('title').default = 'Default Value'
+HomePage._meta.get_field('slug').default = 'default-value'
