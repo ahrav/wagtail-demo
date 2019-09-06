@@ -5,6 +5,11 @@
 {% block content %}
 {% image self.banner_image fill-1200x300 as banner %}
 <img src="{{ banner.url }}" style="width: 100%; height: auto;" alt="{{ banner.alt }}">
+
+<h1>Tags:</h1>
+{% for tag in page.tags.all %}
+<a href="/blog/?tag={{tag.slug}}">{{tag}}</a><br />
+{% endfor %}
 <div class="container mt-5 mb-5">
   <div class="text-center">
     <h1>

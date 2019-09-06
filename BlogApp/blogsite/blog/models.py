@@ -5,6 +5,8 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django.shortcuts import render
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from modelcluster.contrib.taggit import ClusterTaggableManager
+from taggit.models import TaggedItemBase
 from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
                                          MultiFieldPanel, StreamFieldPanel)
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
@@ -162,6 +164,9 @@ class BlogListingPage(RoutablePageMixin, Page):
         # context['posts'] = BlogDetailPage.objects.live().public()
         all_posts = BlogDetailPage.objects.live().public().order_by(
             '-first_published_at')
+        tag = request.GET.get('tag')
+        if tag:
+            all_posts = all_posts.filter(tags__slug__in=[tag])
 
         paginator = Paginator(all_posts, 2)
         page = request.GET.get('page')
@@ -197,11 +202,23 @@ class BlogListingPage(RoutablePageMixin, Page):
         return sitemap
 
 
+class BlogPageTags(TaggedItemBase):
+
+    content_object = ParentalKey(
+        'BlogDetailPage',
+        related_name='tagged_items',
+        on_delete=models.CASCADE,
+    )
+
+
 class BlogDetailPage(Page):
     """Parental bllog detail page"""
 
     subpage_types = []
-    parent_page_types = ['blog.BlogListingPage',]
+    parent_page_types = [
+        'blog.BlogListingPage',
+    ]
+    tags = ClusterTaggableManager(through=BlogPageTags, blank=True)
 
     custom_title = models.CharField(max_length=100,
                                     blank=False,
@@ -227,6 +244,7 @@ class BlogDetailPage(Page):
 
     content_panels = Page.content_panels + [
         FieldPanel('custom_title'),
+        FieldPanel('tags'),
         ImageChooserPanel('banner_image'),
         MultiFieldPanel([
             InlinePanel('blog_authors', label='Author', min_num=1, max_num=4)
@@ -268,6 +286,7 @@ class ArticleBlogPage(BlogDetailPage):
     content_panels = Page.content_panels + [
         FieldPanel('custom_title'),
         FieldPanel('subtitle'),
+        FieldPanel('tags'),
         ImageChooserPanel('banner_image'),
         ImageChooserPanel('intro_image'),
         MultiFieldPanel([
@@ -290,6 +309,7 @@ class VideoBlogPage(BlogDetailPage):
 
     content_panels = Page.content_panels + [
         FieldPanel('custom_title'),
+        FieldPanel('tags'),
         ImageChooserPanel('banner_image'),
         MultiFieldPanel([
             InlinePanel('blog_authors', label='Author', min_num=1, max_num=4)
