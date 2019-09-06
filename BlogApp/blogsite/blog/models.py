@@ -3,7 +3,7 @@ from django.core.cache import cache
 from django.core.cache.utils import make_template_fragment_key
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from taggit.models import TaggedItemBase
@@ -181,6 +181,30 @@ class BlogListingPage(RoutablePageMixin, Page):
 
         context['categories'] = BlogCategory.objects.all()
         return context
+
+    @route(r'^year/(\d+)/$', name='blogs_by_year')
+    def blogs_by_year(self, request, year):
+        context = self.get_context(request)
+
+        return render(request, 'blog/latest_post.html', context)
+
+    @route(r'^category/(?P<cat_slug>[-\w]*)/$', name='category_view')
+    def category_view(self, request, cat_slug):
+        """Find blog posts based on category"""
+
+        context = self.get_context(request)
+
+        try:
+            category = BlogCategory.objects.get(slug=cat_slug)
+        except Exception as e:
+            category = None
+
+        if not category:
+            return redirect('/blog/')
+
+        context['posts'] = BlogDetailPage.objects.live().public().filter(
+            categories__in=[category])
+        return render(request, "blog/latest_posts.html", context)
 
     @route(r'^latest/$', name='latest_posts')
     def latest_blog_posts(self, request, *args, **kwargs):
