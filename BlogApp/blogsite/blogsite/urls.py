@@ -17,12 +17,13 @@ urlpatterns = [
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^documents/', include(wagtaildocs_urls)),
     url(r'^search/$', search_views.search, name='search'),
+    url(r'^api/v2/', api_router.urls),
     url(r'^sitemap.xml$', sitemap),
+    url(r'', include('allauth.urls')),
 
     # For anything not caught by a more specific rule above, hand over to
     # Wagtail's page serving mechanism. This should be the last pattern in
     # the list:
-    url(r'^api/v2/', api_router.urls),
     url(r'', include(wagtail_urls)),
 
     # Alternatively, if you want Wagtail pages to be served from a subpath
@@ -31,7 +32,7 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    import debug_toolbar
+    # import debug_toolbar
     from django.conf.urls.static import static
     from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
@@ -40,5 +41,5 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,
                           document_root=settings.MEDIA_ROOT)
     urlpatterns = [
-        path('__debug__/', include(debug_toolbar.urls)),
+        # path('__debug__/', include(debug_toolbar.urls)),
     ] + urlpatterns

@@ -12,13 +12,24 @@ ALLOWED_HOSTS = ['*']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = INSTALLED_APPS + [
-    'debug_toolbar',
+    # 'debug_toolbar',
     'django_extensions',
     'wagtail.contrib.styleguide',
 ]
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'randopass'
+#     }
+# }
+
 MIDDLEWARE = MIDDLEWARE + [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 INTERNAL_IPS = ('127.0.0.1', '172.17.01')
