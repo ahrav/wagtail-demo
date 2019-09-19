@@ -1,0 +1,7 @@
+{
+  "python.pythonPath": "/Users/ahrav/.local/share/virtualenvs/bloggy-QVhWcSa0/bin/python",
+  "python.formatting.provider": "yapf",
+  "python.linting.flake8Enabled": false,
+  "python.linting.pep8Enabled": true,
+  "python.linting.enabled": true
+}
