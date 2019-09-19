@@ -43,7 +43,8 @@ class CTABlock(blocks.StructBlock):
     text = blocks.RichTextBlock(required=True, features=['bold', 'italic'])
     button_page = blocks.PageChooserBlock(required=False)
     button_url = blocks.URLBlock(required=False)
-    button_text = blocks.CharBlock(required=True, default='Learn More', max_length=40)
+    button_text = blocks.CharBlock(required=True, default='Learn More',
+                                   max_length=40)
 
     class Meta: #noqa
         template = 'streams/cta_block.html'
