@@ -31,7 +31,7 @@ class BlogListingPage(RoutablePageMixin, Page):
         return context
 
     @route(r'^latest/$')
-    def latest_blog_post(self, request, *args, **kwargs):
+    def latest_blog_posts(self, request, *args, **kwargs):
         context = self.get_context(request, *args, **kwargs)
         context['posts'] = context['posts'][:1]
         return render(request, 'blog/latest_posts.html', context)
