@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 
 {% block content %}
 
@@ -21,6 +21,7 @@
         {% endif %}
 
         {# @todo add a summary field to BlogDetailPage; make it a RichTextField with only Bold and Italic enabled. #}
+        <p>{{post.summary|richtext}}</p>
         <a href="{{ post.url }}" class="btn btn-primary mt-4">Read More</a>
       </a>
     </div>
