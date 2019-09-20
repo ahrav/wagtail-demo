@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import render
 from modelcluster.fields import ParentalKey
 from wagtail.admin.edit_handlers import (FieldPanel, PageChooserPanel,
                                          StreamFieldPanel, InlinePanel,
@@ -6,8 +7,10 @@ from wagtail.admin.edit_handlers import (FieldPanel, PageChooserPanel,
 from wagtail.core.fields import RichTextField, StreamField
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
+from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 
 from streams import blocks
+from subscribers.forms import SubscriberForm
 
 
 class HomePageCarouselImages(Orderable):
@@ -25,7 +28,7 @@ class HomePageCarouselImages(Orderable):
     ]
 
 
-class HomePage(Page):
+class HomePage(RoutablePageMixin, Page):
     """Home page model"""
 
     template = 'home/home_page.html'
@@ -71,3 +74,15 @@ class HomePage(Page):
 
         verbose_name = 'Bloggy Home Page'
         verbose_name_plural = 'Bloggy Home Pages'
+
+    @route(r'^subscribe/$')
+    def subscribe_page(self, request, *args, **kwargs):
+        context = self.get_context(request, *args, **kwargs)
+        form = SubscriberForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+            form = SubscriberForm()
+        context = {
+            'form': form,
+        }
+        return render(request, 'home/subscribe.html', context)
